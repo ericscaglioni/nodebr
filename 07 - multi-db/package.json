@@ -1,0 +1,16 @@
+{
+  "name": "modulo05-multidatabase",
+  "version": "1.0.0",
+  "description": "docker run \\     --name postgres \\     -e POSTGRES_USER=erickwendel \\     -e POSTGRES_PASSWORD=minhasenhasecreta \\     -e POSTGRES_DB=heroes \\     -p 5432:5432 \\     -d \\     postgres",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -w *.test.js"
+  },
+  "author": "erickwendel",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {},
+  "keywords": []
+}
