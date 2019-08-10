@@ -51,8 +51,6 @@ class PostgreSQLStrategy extends IDb {
         dialect: 'postgres',
         // case sensitive
         quoteIdentifiers: false,
-        // deprecation warning
-        operatorsAliases: false,
         //disable logging
         logging: false
         // dialectOptions: {

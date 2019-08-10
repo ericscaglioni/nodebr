@@ -14,15 +14,11 @@ let MOCK_HEROI_ATUALIZAR_ID = '';
 const context = new Context(new MongoDb())
 
 describe('MongoDB Suite de testes', function () {
-    this.beforeAll(async (done) => {
-        try {
-            await context.connect()
-            const result = await context.create(MOCK_HEROI_ATUALIZAR)
-            MOCK_HEROI_ATUALIZAR_ID = result._id
-        } catch (error) {
-            console.error('deu ruim', error)
-        }
-        
+    this.timeout(Infinity);
+    before(async () => {
+        await context.connect()
+        const result = await context.create(MOCK_HEROI_ATUALIZAR)
+        MOCK_HEROI_ATUALIZAR_ID = result._id  
     })
     it('verificar conexao', async () => {
         const result = await context.isConnected()
