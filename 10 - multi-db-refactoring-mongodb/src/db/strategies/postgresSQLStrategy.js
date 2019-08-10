@@ -44,7 +44,7 @@ class PostgreSQLStrategy extends IDb {
  async connect() {
     this._sequelize = new Sequelize(
       'heroes', //database
-      'erickwendel', // user
+      'ericscaglioni', // user
       'minhasenhasecreta', //senha
       {
         host: 'localhost',
