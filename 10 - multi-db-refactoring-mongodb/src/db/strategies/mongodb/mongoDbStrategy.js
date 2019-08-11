@@ -1,4 +1,4 @@
-const ICrud = require('./base/interfaceDb')
+const ICrud = require('../base/interfaceDb')
 const Mongoose = require('mongoose')
 const STATUS = {
     0: 'Disconectado',
@@ -7,20 +7,20 @@ const STATUS = {
     3: 'Disconectando',
 }
 class MongoDB extends ICrud {
-    constructor() {
+    constructor(connection, schema) {
         super()
-        this._herois = null
-        this._driver = null
+        this._schema = schema
+        this._connection = connection
     }
     async isConnected() {
-        const state = STATUS[this._driver.readyState]
+        const state = STATUS[this._connection.readyState]
         if (state === 'Conectado') return state;
 
         if (state !== 'Conectando') return state
 
         await new Promise(resolve => setTimeout(resolve, 1000))
 
-        return STATUS[this._driver.readyState]
+        return STATUS[this._connection.readyState]
 
     }
     defineModel() {
@@ -40,33 +40,32 @@ class MongoDB extends ICrud {
         })
         
         //mocha workaround
-        this._herois = Mongoose.models.herois || Mongoose.model('herois', heroiSchema)
+        this._schema = Mongoose.models.herois || Mongoose.model('herois', heroiSchema)
     }
-    connect() {
+    static connect() {
         Mongoose.connect('mongodb://ericscaglioni:minhasenhasecreta@localhost:27017/herois', {
             useNewUrlParser: true
         }, function (error) {
             if (!error) return;
             console.log('Falha na conexão!', error)
         })
-        
-        this._driver = Mongoose.connection
-        this._driver.once('open', () => console.log('database rodando!!'))
-        this.defineModel()
+        const connection = Mongoose.connection
+        connection.once('open', () => console.log('database rodando!!'))
+        return connection
     }
 
     async create(item) {
-        return this._herois.create(item)
+        return this._schema.create(item)
     }
     async read(item = {}) {
-        return this._herois.find(item, { nome: 1, poder: 1, insertedAt: 1})
+        return this._schema.find(item, { nome: 1, poder: 1, insertedAt: 1})
     }
     async update(id, item) {
-        return this._herois.updateOne({_id: id}, { $set: item})
+        return this._schema.updateOne({_id: id}, { $set: item})
     }
     
     async delete(id) {
-        return this._herois.deleteOne({_id: id})
+        return this._schema.deleteOne({_id: id})
     }
 }
 
