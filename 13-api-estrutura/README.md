@@ -14,6 +14,8 @@ docker run \
     -d \
     adminer
 
+-- Pra logar, o server é postgres
+
 ## ---- MONGODB
 docker run \
     --name mongodb \
@@ -33,3 +35,5 @@ docker run \
 docker exec -it mongodb \
     mongo --host localhost -u admin -p senhaadmin --authenticationDatabase admin \
     --eval "db.getSiblingDB('herois').createUser({user: 'ericscaglioni', pwd: 'minhasenhasecreta', roles: [{role: 'readWrite', db: 'herois'}]})"
+
+-- Pra logar, o server é mongodb

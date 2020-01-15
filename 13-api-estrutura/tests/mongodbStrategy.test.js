@@ -5,7 +5,7 @@ const HeroisSchema = require('../src/db/strategies/mongodb/schemas/heroisSchema'
 
 const MOCK_HEROI_CADASTRAR = {
     nome: 'Gaviao Negro',
-    poder: 'flexas'
+    poder: 'flechas'
 };
 
 const MOCK_HEROI_ATUALIZAR = {

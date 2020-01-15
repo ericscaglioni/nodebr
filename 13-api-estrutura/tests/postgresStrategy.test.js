@@ -1,7 +1,7 @@
 const { equal, deepEqual, ok } = require('assert');
 const PostgresStrategy = require('../src/db/strategies/postgres/postgresSQLStrategy');
 const Context = require('../src/db/strategies/base/contextStrategy');
-const MOCK_HEROI_CADASTRAR = { nome: 'Gaviao Negro', poder: 'flexas' };
+const MOCK_HEROI_CADASTRAR = { nome: 'Gaviao Negro', poder: 'flechas' };
 const MOCK_HEROI_ATUALIZAR = { nome: 'Mulher Gavião', poder: 'grito' };
 const HeroiSchema = require('../src/db/strategies/postgres/schemas/heroisSchema')
 
@@ -9,6 +9,7 @@ let context = {}
 
 describe('PostgreSQL Strategy', function() {
   this.timeout(Infinity);
+
   before(async () => {
     const connection = await PostgresStrategy.connect()
     const model = await PostgresStrategy.defineModel(connection, HeroiSchema)
