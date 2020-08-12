@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -w tests/*.test.js",
+    "test": "mocha -w src/tests/*.test.js",
     "start": "node server.js"
   },
   "author": "erickwendel",
