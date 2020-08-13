@@ -8,7 +8,7 @@ class IDb {
   create(item) {
     throw new NotImplementedException();
   }
-  read(item) {
+  read(item, skip, limit) {
     throw new NotImplementedException();
   }
   update(id, item) {

@@ -10,8 +10,28 @@ class HeroRoutes extends BaseRoute {
         return {
             method: 'GET',
             path: '/herois',
-            handler: (request, headers) => {
-                return this.db.read();
+            handler: (request) => {
+                try {
+                    const {
+                        skip,
+                        limit,
+                        nome
+                    } = request.query
+
+                    let query = {}
+                    if (nome) {
+                        query.nome = nome
+                    }
+
+                    return this.db.read(
+                        query,
+                        parseInt(skip),
+                        parseInt(limit)
+                    );
+                } catch (error) {
+                    console.error('DEU RUIM', error);
+                    return 'Erro interno no servidor'
+                }
             }
         }
     }

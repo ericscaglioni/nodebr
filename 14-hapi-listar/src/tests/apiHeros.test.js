@@ -25,13 +25,11 @@ describe('Suite de testes da API Heroes', function () {
 
         const response = await app.inject({
             method: 'GET',
-            url: `/herois?teste=teste`
+            url: `/herois?skip=0&limit=2`
         });
 
         const statusCode = response.statusCode;
-        console.log('statusCode', statusCode)
         const data = JSON.parse(response.payload);
-        console.log('data', data.length)
 
         assert.deepEqual(statusCode, 200);
         assert.ok(data.length === TAMANHO_LIMITE);
