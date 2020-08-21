@@ -36,4 +36,4 @@ docker exec -it mongodb \
     mongo --host localhost -u admin -p senhaadmin --authenticationDatabase admin \
     --eval "db.getSiblingDB('herois').createUser({user: 'ericscaglioni', pwd: 'minhasenhasecreta', roles: [{role: 'readWrite', db: 'herois'}]})"
 
--- Pra logar, o server é mongodb
+-- Pra logar, o host/port é mongodb (não colocar Authentication DB)
