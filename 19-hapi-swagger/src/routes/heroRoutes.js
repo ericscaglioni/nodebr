@@ -17,6 +17,7 @@ class HeroRoutes extends BaseRoute {
             method: 'GET',
             path: '/herois',
             config: {
+                description: 'Lista herois',
                 tags: ['api'],
                 validate: {
                     // payload => body

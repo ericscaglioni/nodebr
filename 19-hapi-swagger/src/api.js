@@ -26,13 +26,12 @@ async function main () {
         info: {
             title: 'Api Herois - #CursoNodeBR',
             version: 'v1.0'
-        },
-        lang: 'pt-BR'
+        }
     }
 
     await app.register([
-        Vision,
         Inert,
+        Vision,
         {
             plugin: HapiSwagger,
             options: swaggerOptions
